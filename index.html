@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aura Production — КП по РД за 30 секунд</title>
+<meta name="description" content="Автоматизация смет по рабочей документации. Загрузите спецификацию — получите КП с материалами, работами и НДС. Электрика и слаботочка.">
 <link rel="icon" type="image/svg+xml" href="/logo/aura-logo.svg">
 <link rel="apple-touch-icon" href="/logo/aura-logo.svg">
-<meta name="description" content="Автоматизация смет по рабочей документации. Загрузите спецификацию — получите КП с материалами, работами и НДС. Электрика и слаботочка.">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -21,16 +21,16 @@
   /* Hero */
   .hero {
     text-align: center;
-    padding: 100px 24px 80px;
+    padding: 80px 24px 60px;
     background: radial-gradient(ellipse at top, #1e1b4b 0%, #0a0f1c 70%);
   }
-  .hero img { width: 140px; height: 140px; opacity: 0.95; }
+  .hero img { width: 200px; height: 200px; opacity: 0.95; }
   .hero h1 {
-    font-size: 44px;
+    font-size: 46px;
     font-weight: 800;
     letter-spacing: -1px;
-    margin: 24px 0 16px;
-    line-height: 1.1;
+    margin: 24px 0 12px;
+    line-height: 1.15;
     color: #ffffff;
   }
   .hero h1 span { color: #a78bfa; }
@@ -39,21 +39,38 @@
     color: #818cf8;
     letter-spacing: 4px;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .hero .tagline {
-    font-size: 19px;
+    font-size: 18px;
     color: #c4b5fd;
     max-width: 680px;
-    margin: 0 auto 40px;
+    margin: 0 auto 16px;
+  }
+  .hero .systems {
+    font-size: 14px;
+    color: #64748b;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+
+  /* Upload */
+  .upload-box {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 24px;
   }
   .cta {
-    display: inline-block;
+    display: block;
+    width: 100%;
     padding: 18px 44px;
-    background: #6366f1;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 17px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -62,8 +79,62 @@
     cursor: pointer;
     font-family: inherit;
   }
-  .cta:hover { background: #818cf8; transform: translateY(-1px); }
-  .cta:disabled { opacity: 0.5; cursor: wait; }
+  .cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3); }
+  .cta:disabled { opacity: 0.5; cursor: wait; transform: none; }
+
+  .region-select {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+  }
+  .region-select label {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+  .region-select select {
+    padding: 10px 16px;
+    background: #0a0f1c;
+    color: #e0e7ff;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .browser-warning {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  #status {
+    margin-top: 20px;
+    color: #a78bfa;
+    font-size: 14px;
+    min-height: 20px;
+    text-align: center;
+  }
+
+  #result {
+    margin-top: 20px;
+    text-align: left;
+    background: #0a0f1c;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+    max-height: 400px;
+    overflow: auto;
+    font-size: 12px;
+    display: none;
+    color: #c4b5fd;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'Courier New', monospace;
+  }
 
   /* Stats */
   .stats {
@@ -83,7 +154,7 @@
     line-height: 1;
   }
   .stat .label {
-    font-size: 13px;
+    font-size: 12px;
     color: #64748b;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -143,26 +214,7 @@
     color: #94a3b8;
   }
 
-  /* Demo */
-  .demo {
-    background: #111827;
-    border-radius: 12px;
-    border: 1px solid #1e293b;
-    padding: 40px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .demo-placeholder {
-    background: #0a0f1c;
-    border-radius: 8px;
-    padding: 60px 20px;
-    border: 1px dashed #334155;
-    color: #64748b;
-    font-size: 14px;
-  }
-
-  /* For whom */
+  /* Audience */
   .audience {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -256,28 +308,17 @@
     text-transform: uppercase;
   }
 
-  /* Result */
-  #result {
-    margin-top: 24px;
-    text-align: left;
-    background: #0a0f1c;
-    padding: 24px;
-    border-radius: 8px;
-    border: 1px solid #1e293b;
-    max-height: 500px;
-    overflow: auto;
-    font-size: 12px;
-    display: none;
-    color: #c4b5fd;
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-family: 'Courier New', monospace;
-  }
-  #status {
-    margin-top: 20px;
-    color: #a78bfa;
-    font-size: 14px;
-    min-height: 20px;
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 20px 40px; }
+    .hero img { width: 150px; height: 150px; }
+    .hero h1 { font-size: 32px; }
+    .hero .tagline { font-size: 16px; }
+    .stats { gap: 32px; padding: 32px 20px; }
+    .stat .num { font-size: 28px; }
+    section { padding: 60px 20px; }
+    h2 { font-size: 24px; }
+    .cta { padding: 16px 32px; font-size: 16px; }
   }
 </style>
 </head>
@@ -286,12 +327,30 @@
 <!-- HERO -->
 <div class="hero">
   <img src="logo/aura-logo.svg" alt="Aura Production">
-  <h1>КП по РД<br>на электромонтаж<br><span>за 30 секунд</span></h1>
+  <h1>КП по РД<br><span>за 30 секунд</span></h1>
   <div class="sub">Aura Production</div>
-  <p class="tagline">Электрика и слаботочка.<br>Загрузите спецификацию — получите КП с материалами, работами и НДС.</p>
-  <div style="margin-top: 20px;">
+  <p class="tagline">Загрузите спецификацию — получите КП с материалами, работами и НДС.</p>
+  <p class="systems">ЭОМ · СС · СКУД · АПС · СОУЭ · НСС</p>
+
+  <div class="upload-box">
     <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
     <button id="uploadBtn" onclick="document.getElementById('pdfInput').click()" class="cta">Загрузить спецификацию</button>
+
+    <div class="region-select">
+      <label for="region">Регион расчёта:</label>
+      <select id="region">
+        <option value="msk" selected>Москва</option>
+        <option value="spb">Санкт-Петербург</option>
+        <option value="nsk">Новосибирск</option>
+        <option value="vvo">Владивосток</option>
+      </select>
+    </div>
+
+    <div class="browser-warning">
+      ⚠️ Работает в Chrome, Edge, Safari.<br>
+      Яндекс Браузер может блокировать загрузку.
+    </div>
+
     <div id="status"></div>
     <pre id="result"></pre>
   </div>
@@ -300,15 +359,15 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat">
-    <div class="num" id="statProducts">499</div>
+    <div class="num" id="statProducts">618</div>
     <div class="label">Товаров в базе</div>
   </div>
   <div class="stat">
-    <div class="num" id="statPrices">321</div>
+    <div class="num" id="statPrices">403</div>
     <div class="label">Проверенных цен</div>
   </div>
   <div class="stat">
-    <div class="num" id="statEstimates">4</div>
+    <div class="num" id="statEstimates">5</div>
     <div class="label">Смет обработано</div>
   </div>
 </div>
@@ -336,18 +395,6 @@
   </div>
 </section>
 
-<!-- ДЕМО -->
-<section>
-  <h2>Демонстрация</h2>
-  <p class="section-sub">Так выглядит процесс</p>
-  <div class="demo">
-    <div class="demo-placeholder">
-      🎬 Скринкаст: загрузка PDF → результат<br>
-      <span style="font-size: 12px; margin-top: 12px; display: inline-block;">(видео добавим позже)</span>
-    </div>
-  </div>
-</section>
-
 <!-- ДЛЯ КОГО -->
 <section>
   <h2>Для кого</h2>
@@ -368,7 +415,7 @@
   </div>
 </section>
 
-<!-- ИНТЕГРАЦИЯ -->
+<!-- ЧТО ВНУТРИ КП -->
 <section>
   <h2>Что внутри КП</h2>
   <p class="section-sub">Результат — готовый документ для работы</p>
@@ -392,28 +439,6 @@
   </div>
 </section>
 
-<!-- КАК НАЙТИ СПЕЦИФИКАЦИЮ -->
-<section>
-  <h2>Как найти спецификацию</h2>
-  <p class="section-sub">Что загружать</p>
-  <div class="faq-item">
-    <h4>1. Откройте PDF рабочей документации</h4>
-    <p>Альбом РД по ЭОМ, СС, СКУД, АПС, СОУЭ или НСС.</p>
-  </div>
-  <div class="faq-item">
-    <h4>2. Найдите лист «СО»</h4>
-    <p>«Спецификация оборудования и материалов». Обычно — в конце альбома.</p>
-  </div>
-  <div class="faq-item">
-    <h4>3. Вырежьте эти страницы в отдельный PDF</h4>
-    <p>2–5 страниц. Так парсер работает быстрее и точнее.</p>
-  </div>
-  <div class="faq-item">
-    <h4>4. Загрузите сюда</h4>
-    <p>Нажмите «Загрузить спецификацию» и выберите файл.</p>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section>
   <h2>Частые вопросы</h2>
@@ -426,8 +451,8 @@
     <p>Своя база + ЭТМ, Петрович, дилеры. Регион — Москва.</p>
   </div>
   <div class="faq-item">
-    <h4>Если какие-то позиции без цены?</h4>
-    <p>Помечаются как «требует проработки». Их можно уточнить вручную.</p>
+    <h4>Почему не работает в Яндекс Браузере?</h4>
+    <p>Яндекс блокирует запросы к нашему API. Откройте сайт в Chrome, Edge или Safari.</p>
   </div>
   <div class="faq-item">
     <h4>Чем отличается от ручного расчёта?</h4>
@@ -456,6 +481,7 @@ const pdfInput = document.getElementById('pdfInput');
 const uploadBtn = document.getElementById('uploadBtn');
 const status = document.getElementById('status');
 const result = document.getElementById('result');
+const regionSelect = document.getElementById('region');
 
 // Загружаем статистику из D1
 async function loadStats() {
@@ -468,7 +494,7 @@ async function loadStats() {
       document.getElementById('statEstimates').textContent = data.estimates;
     }
   } catch (err) {
-    // Тихо — если не получилось, оставляем дефолтные значения
+    // Тихо
   }
 }
 loadStats();
@@ -483,6 +509,7 @@ pdfInput.addEventListener('change', async (e) => {
 
   const formData = new FormData();
   formData.append('pdf', file);
+  formData.append('region', regionSelect.value);
 
   try {
     const res = await fetch(API_URL, {
