@@ -14,7 +14,7 @@
     line-height: 1.6;
   }
   .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-  
+
   /* Hero */
   .hero {
     text-align: center;
@@ -48,9 +48,12 @@
     font-size: 16px;
     letter-spacing: 1px;
     transition: transform 0.2s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
   }
   .cta:hover { transform: translateY(-2px); }
-  
+
   /* Section */
   section {
     padding: 60px 20px;
@@ -63,7 +66,7 @@
     text-align: center;
     color: #e0e7ff;
   }
-  
+
   /* Steps */
   .steps {
     display: grid;
@@ -91,7 +94,7 @@
     font-size: 14px;
     color: #a5b4fc;
   }
-  
+
   /* Features */
   .features {
     display: grid;
@@ -112,7 +115,7 @@
     font-size: 13px;
     color: #94a3b8;
   }
-  
+
   /* Contacts */
   .contacts {
     text-align: center;
@@ -128,7 +131,7 @@
     transition: border-color 0.2s;
   }
   .contacts a:hover { border-color: #a78bfa; }
-  
+
   /* Footer */
   footer {
     text-align: center;
@@ -137,6 +140,27 @@
     font-size: 12px;
     letter-spacing: 2px;
     color: #6366f1;
+  }
+
+  /* Result */
+  #result {
+    margin-top: 20px;
+    text-align: left;
+    background: #1e1b4b;
+    padding: 20px;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow: auto;
+    font-size: 12px;
+    display: none;
+    color: #c4b5fd;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  #status {
+    margin-top: 20px;
+    color: #a78bfa;
+    font-size: 14px;
   }
 </style>
 </head>
@@ -148,10 +172,15 @@
   <h1>AURA</h1>
   <div class="sub">PRODUCTION</div>
   <p class="tagline">Автоматизация смет по рабочей документации.<br>PDF → Excel за минуты.</p>
-  <a href="mailto:sergius.incorporated@gmail.com" class="cta">Связаться</a>
+  <div style="margin-top: 20px;">
+    <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
+    <button onclick="document.getElementById('pdfInput').click()" class="cta">Загрузить PDF</button>
+    <div id="status"></div>
+    <pre id="result"></pre>
+  </div>
 </div>
 
-<!-- КАК РАБОТАЕТ -->
+<!-- КАК ЭТО РАБОТАЕТ -->
 <section>
   <h2>КАК ЭТО РАБОТАЕТ</h2>
   <div class="steps">
@@ -216,6 +245,44 @@
 <footer>
   SERGIJUS INCORPORATED · AURA PRODUCTION · MOSCOW · 2026
 </footer>
+
+<script>
+// Временно — локальный Worker. Потом заменим на задеплоенный URL.
+const API_URL = 'https://aura-parser.sergijus.workers.dev/parse';
+
+document.getElementById('pdfInput').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const status = document.getElementById('status');
+  const result = document.getElementById('result');
+
+  status.textContent = 'Загружаю PDF...';
+  result.style.display = 'none';
+
+  const formData = new FormData();
+  formData.append('pdf', file);
+
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.status === 'success') {
+      status.textContent = `✅ PDF распарсен. Страниц: ${data.pages}`;
+      result.textContent = data.text;
+      result.style.display = 'block';
+    } else {
+      status.textContent = '❌ Ошибка: ' + (data.error || 'неизвестная');
+    }
+  } catch (err) {
+    status.textContent = '❌ Ошибка сети: ' + err.message;
+  }
+});
+</script>
 
 </body>
 </html>
