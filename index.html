@@ -3,150 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>КП по РД на электромонтаж — Aura Production</title>
-<meta name="description" content="Коммерческое предложение по рабочей документации на электромонтажные работы. Электрика и слаботочка. PDF → КП за 30 секунд.">
+<title>Aura Production — КП по РД за 30 секунд</title>
+<meta name="description" content="Автоматизация смет по рабочей документации. Загрузите спецификацию — получите КП с материалами, работами и НДС. Электрика и слаботочка.">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: #0f172a;
+    background: #0a0f1c;
     color: #e0e7ff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
   /* Hero */
   .hero {
     text-align: center;
-    padding: 80px 20px 60px;
+    padding: 100px 24px 80px;
+    background: radial-gradient(ellipse at top, #1e1b4b 0%, #0a0f1c 70%);
   }
-  .hero img { width: 180px; height: 180px; }
+  .hero img { width: 140px; height: 140px; opacity: 0.95; }
   .hero h1 {
-    font-size: 38px;
-    letter-spacing: 4px;
-    margin: 20px 0 8px;
-    line-height: 1.2;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 24px 0 16px;
+    line-height: 1.1;
+    color: #ffffff;
   }
+  .hero h1 span { color: #a78bfa; }
   .hero .sub {
-    font-size: 16px;
-    color: #a78bfa;
-    letter-spacing: 3px;
-    margin-bottom: 30px;
+    font-size: 14px;
+    color: #818cf8;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
   }
   .hero .tagline {
-    font-size: 18px;
+    font-size: 19px;
     color: #c4b5fd;
-    max-width: 640px;
+    max-width: 680px;
     margin: 0 auto 40px;
   }
   .cta {
     display: inline-block;
-    padding: 16px 40px;
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    padding: 18px 44px;
+    background: #6366f1;
     color: #fff;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 17px;
-    letter-spacing: 1px;
-    transition: transform 0.2s;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
     border: none;
     cursor: pointer;
     font-family: inherit;
   }
-  .cta:hover { transform: translateY(-2px); }
+  .cta:hover { background: #818cf8; transform: translateY(-1px); }
   .cta:disabled { opacity: 0.5; cursor: wait; }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px 24px;
+    border-top: 1px solid #1e293b;
+    border-bottom: 1px solid #1e293b;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat .num {
+    font-size: 36px;
+    font-weight: 800;
+    color: #a78bfa;
+    line-height: 1;
+  }
+  .stat .label {
+    font-size: 13px;
+    color: #64748b;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
 
   /* Section */
   section {
-    padding: 60px 20px;
+    padding: 80px 24px;
     border-top: 1px solid #1e293b;
   }
   h2 {
-    font-size: 26px;
-    letter-spacing: 3px;
-    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
     text-align: center;
-    color: #e0e7ff;
+    color: #ffffff;
+  }
+  .section-sub {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 16px;
+    max-width: 640px;
+    margin: 0 auto 48px;
   }
 
   /* Steps */
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
   }
   .step {
-    background: #1e1b4b;
-    padding: 30px 24px;
-    border-radius: 12px;
-    border: 1px solid #312e81;
+    background: #111827;
+    padding: 32px 28px;
+    border-radius: 10px;
+    border: 1px solid #1e293b;
+    transition: border-color 0.2s;
   }
+  .step:hover { border-color: #6366f1; }
   .step .num {
-    font-size: 36px;
-    color: #8b5cf6;
+    font-size: 13px;
+    color: #6366f1;
     font-weight: 700;
-    margin-bottom: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
   }
   .step h3 {
     font-size: 18px;
-    margin-bottom: 10px;
-    color: #e0e7ff;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #ffffff;
   }
   .step p {
     font-size: 14px;
-    color: #a5b4fc;
+    color: #94a3b8;
+  }
+
+  /* Demo */
+  .demo {
+    background: #111827;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .demo-placeholder {
+    background: #0a0f1c;
+    border-radius: 8px;
+    padding: 60px 20px;
+    border: 1px dashed #334155;
+    color: #64748b;
+    font-size: 14px;
+  }
+
+  /* For whom */
+  .audience {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .audience-item {
+    background: #111827;
+    padding: 28px 24px;
+    border-radius: 10px;
+    border-left: 3px solid #6366f1;
+  }
+  .audience-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #c4b5fd;
+  }
+  .audience-item p {
+    font-size: 14px;
+    color: #94a3b8;
   }
 
   /* Features */
   .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
   }
   .feature {
-    padding: 20px;
-    border-left: 3px solid #6366f1;
-    background: #0f172a;
+    padding: 24px;
+    background: #0a0f1c;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
   }
   .feature h4 {
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #c4b5fd;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #e0e7ff;
   }
   .feature p {
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
   }
 
   /* FAQ */
   .faq-item {
-    background: #1e1b4b;
-    padding: 20px 24px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    border: 1px solid #312e81;
+    background: #111827;
+    padding: 24px 28px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #1e293b;
   }
   .faq-item h4 {
     font-size: 16px;
-    color: #c4b5fd;
-    margin-bottom: 8px;
+    font-weight: 600;
+    color: #e0e7ff;
+    margin-bottom: 10px;
   }
   .faq-item p {
     font-size: 14px;
-    color: #a5b4fc;
+    color: #94a3b8;
   }
 
   /* Contacts */
   .contacts {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 24px;
+    background: #111827;
   }
   .contacts a {
     display: inline-block;
-    margin: 8px 12px;
+    margin: 8px 16px;
     color: #a78bfa;
     text-decoration: none;
     font-size: 15px;
+    font-weight: 500;
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s;
   }
@@ -155,20 +246,22 @@
   /* Footer */
   footer {
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 24px;
     border-top: 1px solid #1e293b;
     font-size: 12px;
     letter-spacing: 2px;
-    color: #6366f1;
+    color: #475569;
+    text-transform: uppercase;
   }
 
   /* Result */
   #result {
-    margin-top: 20px;
+    margin-top: 24px;
     text-align: left;
-    background: #1e1b4b;
-    padding: 20px;
+    background: #0a0f1c;
+    padding: 24px;
     border-radius: 8px;
+    border: 1px solid #1e293b;
     max-height: 500px;
     overflow: auto;
     font-size: 12px;
@@ -182,6 +275,7 @@
     margin-top: 20px;
     color: #a78bfa;
     font-size: 14px;
+    min-height: 20px;
   }
 </style>
 </head>
@@ -190,9 +284,9 @@
 <!-- HERO -->
 <div class="hero">
   <img src="logo/aura-logo.svg" alt="Aura Production">
-  <h1>КП по РД<br>на электромонтаж<br>за 30 секунд</h1>
-  <div class="sub">AURA PRODUCTION</div>
-  <p class="tagline">Электрика и слаботочка.<br>Загрузите спецификацию — получите КП с материалами, работами и НДС.<br>Без ручного пересчёта.</p>
+  <h1>КП по РД<br>на электромонтаж<br><span>за 30 секунд</span></h1>
+  <div class="sub">Aura Production</div>
+  <p class="tagline">Электрика и слаботочка.<br>Загрузите спецификацию — получите КП с материалами, работами и НДС.</p>
   <div style="margin-top: 20px;">
     <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
     <button id="uploadBtn" onclick="document.getElementById('pdfInput').click()" class="cta">Загрузить спецификацию</button>
@@ -201,62 +295,105 @@
   </div>
 </div>
 
-<!-- ЧТО ВНУТРИ -->
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="num" id="statProducts">499</div>
+    <div class="label">Товаров в базе</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="statPrices">321</div>
+    <div class="label">Проверенных цен</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="statEstimates">4</div>
+    <div class="label">Смет обработано</div>
+  </div>
+</div>
+
+<!-- КАК ЭТО РАБОТАЕТ -->
 <section>
-  <h2>ЧТО ВНУТРИ КП</h2>
+  <h2>Как это работает</h2>
+  <p class="section-sub">Три шага — от PDF до готового КП</p>
   <div class="steps">
     <div class="step">
       <div class="num">01</div>
-      <h3>Материалы</h3>
-      <p>Позиции из спецификации с ценами дилеров. Регион — Москва.</p>
+      <h3>Загружаете спецификацию</h3>
+      <p>Лист «СО» из рабочей документации. 2–5 страниц. ЭОМ, СС, СКУД, АПС, СОУЭ, НСС.</p>
     </div>
     <div class="step">
       <div class="num">02</div>
-      <h3>Работы</h3>
-      <p>Монтаж, прокладка, коэффициенты. Расчёт по базовым расценкам.</p>
+      <h3>Парсер обрабатывает</h3>
+      <p>Находит позиции, ищет цены в базе, считает работы по расценкам.</p>
     </div>
     <div class="step">
       <div class="num">03</div>
-      <h3>Сводка</h3>
-      <p>Итог, наценка, НДС 20%. Готово к отправке заказчику.</p>
+      <h3>Получаете КП</h3>
+      <p>Материалы, работы, наценка, НДС 20%. Готово к отправке заказчику.</p>
     </div>
   </div>
 </section>
 
-<!-- КАКИЕ СИСТЕМЫ -->
+<!-- ДЕМО -->
 <section>
-  <h2>КАКИЕ СИСТЕМЫ СЧИТАЕМ</h2>
+  <h2>Демонстрация</h2>
+  <p class="section-sub">Так выглядит процесс</p>
+  <div class="demo">
+    <div class="demo-placeholder">
+      🎬 Скринкаст: загрузка PDF → результат<br>
+      <span style="font-size: 12px; margin-top: 12px; display: inline-block;">(видео добавим позже)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ДЛЯ КОГО -->
+<section>
+  <h2>Для кого</h2>
+  <p class="section-sub">Кто экономит время с Aura Production</p>
+  <div class="audience">
+    <div class="audience-item">
+      <h4>Электромонтажные организации</h4>
+      <p>Быстрый расчёт КП по РД. Без ручного пересчёта в Excel.</p>
+    </div>
+    <div class="audience-item">
+      <h4>Проектировщики</h4>
+      <p>Готовый КП для заказчика сразу из спецификации.</p>
+    </div>
+    <div class="audience-item">
+      <h4>Генподрядчики</h4>
+      <p>Проверка смет субподрядчиков. Сравнение с базой цен.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ИНТЕГРАЦИЯ -->
+<section>
+  <h2>Что внутри КП</h2>
+  <p class="section-sub">Результат — готовый документ для работы</p>
   <div class="features">
     <div class="feature">
-      <h4>ЭОМ</h4>
-      <p>Электрооборудование и освещение.</p>
+      <h4>Материалы</h4>
+      <p>Позиции из спецификации с ценами дилеров. Регион: Москва, СПб, Новосибирск, Владивосток.</p>
     </div>
     <div class="feature">
-      <h4>СС</h4>
-      <p>Системы связи.</p>
+      <h4>Работы</h4>
+      <p>Монтаж, прокладка, коэффициенты. Расчёт по базовым расценкам.</p>
     </div>
     <div class="feature">
-      <h4>СКУД</h4>
-      <p>Контроль и управление доступом.</p>
+      <h4>Наценка и НДС</h4>
+      <p>Наценка 20% на материалы, 15% на работы. НДС 20% автоматически.</p>
     </div>
     <div class="feature">
-      <h4>АПС</h4>
-      <p>Автоматическая пожарная сигнализация.</p>
-    </div>
-    <div class="feature">
-      <h4>СОУЭ</h4>
-      <p>Система оповещения и управления эвакуацией.</p>
-    </div>
-    <div class="feature">
-      <h4>НСС</h4>
-      <p>Наружные сети связи.</p>
+      <h4>Excel на выходе</h4>
+      <p>3 листа: Материалы, Работы, Сводка. Готово к отправке.</p>
     </div>
   </div>
 </section>
 
 <!-- КАК НАЙТИ СПЕЦИФИКАЦИЮ -->
 <section>
-  <h2>КАК НАЙТИ СПЕЦИФИКАЦИЮ</h2>
+  <h2>Как найти спецификацию</h2>
+  <p class="section-sub">Что загружать</p>
   <div class="faq-item">
     <h4>1. Откройте PDF рабочей документации</h4>
     <p>Альбом РД по ЭОМ, СС, СКУД, АПС, СОУЭ или НСС.</p>
@@ -277,7 +414,7 @@
 
 <!-- FAQ -->
 <section>
-  <h2>ЧАСТЫЕ ВОПРОСЫ</h2>
+  <h2>Частые вопросы</h2>
   <div class="faq-item">
     <h4>Что на выходе?</h4>
     <p>Список позиций с ценами, работы, итог с НДС. Готово к отправке заказчику.</p>
@@ -290,11 +427,15 @@
     <h4>Если какие-то позиции без цены?</h4>
     <p>Помечаются как «требует проработки». Их можно уточнить вручную.</p>
   </div>
+  <div class="faq-item">
+    <h4>Чем отличается от ручного расчёта?</h4>
+    <p>Ручной — 2 дня в Excel. У нас — 30 секунд.</p>
+  </div>
 </section>
 
 <!-- КОНТАКТЫ -->
 <div class="contacts">
-  <h2>СВЯЗАТЬСЯ</h2>
+  <h2>Связаться</h2>
   <a href="mailto:sergius.incorporated@gmail.com">Email</a>
   <a href="https://t.me/ElectricalInspectorBot">Telegram</a>
   <a href="https://github.com/aura-production">GitHub</a>
@@ -302,16 +443,33 @@
 
 <!-- FOOTER -->
 <footer>
-  SERGIJUS INCORPORATED · AURA PRODUCTION · MOSCOW · 2026
+  Sergijus Incorporated · Aura Production · Moscow · 2026
 </footer>
 
 <script>
 const API_URL = 'https://api.mytechbot.ru/parse';
+const STATS_URL = 'https://api.mytechbot.ru/stats';
 
 const pdfInput = document.getElementById('pdfInput');
 const uploadBtn = document.getElementById('uploadBtn');
 const status = document.getElementById('status');
 const result = document.getElementById('result');
+
+// Загружаем статистику из D1
+async function loadStats() {
+  try {
+    const res = await fetch(STATS_URL);
+    const data = await res.json();
+    if (data.status === 'ok') {
+      document.getElementById('statProducts').textContent = data.products;
+      document.getElementById('statPrices').textContent = data.prices;
+      document.getElementById('statEstimates').textContent = data.estimates;
+    }
+  } catch (err) {
+    // Тихо — если не получилось, оставляем дефолтные значения
+  }
+}
+loadStats();
 
 pdfInput.addEventListener('change', async (e) => {
   const file = e.target.files[0];
