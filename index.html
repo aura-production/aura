@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura Production — автоматизация смет за 30 секунд</title>
-<meta name="description" content="Автоматизация смет по рабочей документации. ЭОМ, СС, СКУД, АПС, СОУЭ, НСС. PDF → Excel за минуты.">
+<title>КП по РД на электромонтаж — Aura Production</title>
+<meta name="description" content="Коммерческое предложение по рабочей документации на электромонтажные работы. Электрика и слаботочка. PDF → Excel за 30 секунд.">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -20,11 +20,12 @@
     text-align: center;
     padding: 80px 20px 60px;
   }
-  .hero img { width: 220px; height: 220px; }
+  .hero img { width: 180px; height: 180px; }
   .hero h1 {
-    font-size: 42px;
-    letter-spacing: 6px;
+    font-size: 38px;
+    letter-spacing: 4px;
     margin: 20px 0 8px;
+    line-height: 1.2;
   }
   .hero .sub {
     font-size: 16px;
@@ -35,17 +36,17 @@
   .hero .tagline {
     font-size: 18px;
     color: #c4b5fd;
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto 40px;
   }
   .cta {
     display: inline-block;
-    padding: 14px 36px;
+    padding: 16px 40px;
     background: linear-gradient(135deg, #8b5cf6, #6366f1);
     color: #fff;
     text-decoration: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 17px;
     letter-spacing: 1px;
     transition: transform 0.2s;
     border: none;
@@ -60,7 +61,7 @@
     border-top: 1px solid #1e293b;
   }
   h2 {
-    font-size: 28px;
+    font-size: 26px;
     letter-spacing: 3px;
     margin-bottom: 30px;
     text-align: center;
@@ -116,6 +117,24 @@
     color: #94a3b8;
   }
 
+  /* FAQ */
+  .faq-item {
+    background: #1e1b4b;
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #312e81;
+  }
+  .faq-item h4 {
+    font-size: 16px;
+    color: #c4b5fd;
+    margin-bottom: 8px;
+  }
+  .faq-item p {
+    font-size: 14px;
+    color: #a5b4fc;
+  }
+
   /* Contacts */
   .contacts {
     text-align: center;
@@ -169,67 +188,104 @@
 <!-- HERO -->
 <div class="hero">
   <img src="logo/aura-logo.svg" alt="Aura Production">
-  <h1>AURA</h1>
-  <div class="sub">PRODUCTION</div>
-  <p class="tagline">Автоматизация смет по рабочей документации.<br>PDF → Excel за минуты.</p>
+  <h1>КП по РД<br>на электромонтаж<br>за 30 секунд</h1>
+  <div class="sub">AURA PRODUCTION</div>
+  <p class="tagline">Электрика и слаботочка.<br>Загрузите PDF — получите КП с материалами, работами и НДС.<br>Без ручного пересчёта.</p>
   <div style="margin-top: 20px;">
     <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
-    <button onclick="document.getElementById('pdfInput').click()" class="cta">Загрузить PDF</button>
+    <button onclick="document.getElementById('pdfInput').click()" class="cta">Загрузить РД</button>
     <div id="status"></div>
     <pre id="result"></pre>
   </div>
 </div>
 
-<!-- КАК ЭТО РАБОТАЕТ -->
+<!-- ЧТО ВНУТРИ -->
 <section>
-  <h2>КАК ЭТО РАБОТАЕТ</h2>
+  <h2>ЧТО ВНУТРИ КП</h2>
   <div class="steps">
     <div class="step">
       <div class="num">01</div>
-      <h3>Загружаешь PDF</h3>
-      <p>Рабочая документация: ЭОМ, СС, СКУД, АПС, СОУЭ, НСС.</p>
+      <h3>Материалы</h3>
+      <p>Позиции из спецификации с ценами дилеров. Регион — Москва.</p>
     </div>
     <div class="step">
       <div class="num">02</div>
-      <h3>Бот парсит</h3>
-      <p>Находит позиции, ищет цены у дилеров, считает работы и НДС.</p>
+      <h3>Работы</h3>
+      <p>Монтаж, прокладка, коэффициенты. Расчёт по базовым расценкам.</p>
     </div>
     <div class="step">
       <div class="num">03</div>
-      <h3>Получаешь Excel</h3>
-      <p>Готовая смета: материалы, работы, сводка. 3 листа.</p>
+      <h3>Сводка</h3>
+      <p>Итог, наценка, НДС 20%. Excel, 3 листа. Готово к отправке.</p>
     </div>
   </div>
 </section>
 
-<!-- ВОЗМОЖНОСТИ -->
+<!-- КАКИЕ СИСТЕМЫ -->
 <section>
-  <h2>ВОЗМОЖНОСТИ</h2>
+  <h2>КАКИЕ СИСТЕМЫ СЧИТАЕМ</h2>
   <div class="features">
     <div class="feature">
-      <h4>Парсинг РД</h4>
-      <p>ЭОМ, СС, СКУД, АПС, СОУЭ, НСС — автоматически.</p>
+      <h4>ЭОМ</h4>
+      <p>Электрооборудование и освещение.</p>
     </div>
     <div class="feature">
-      <h4>Цены у дилеров</h4>
-      <p>ЭТМ, ChipDip, ТД ТИНКО, ЛУИС+ и другие.</p>
+      <h4>СС</h4>
+      <p>Системы связи.</p>
     </div>
     <div class="feature">
-      <h4>Своя база цен</h4>
-      <p>Уникальная библиотека. Обновляется раз в неделю.</p>
+      <h4>СКУД</h4>
+      <p>Контроль и управление доступом.</p>
     </div>
     <div class="feature">
-      <h4>Расчёт работ</h4>
-      <p>Монтаж, прокладка, наценки, коэффициенты.</p>
+      <h4>АПС</h4>
+      <p>Автоматическая пожарная сигнализация.</p>
     </div>
     <div class="feature">
-      <h4>НДС 20%</h4>
-      <p>Автоматически. Сводка — в одном листе.</p>
+      <h4>СОУЭ</h4>
+      <p>Система оповещения и управления эвакуацией.</p>
     </div>
     <div class="feature">
-      <h4>Excel на выходе</h4>
-      <p>3 листа: Материалы, Работы, Сводка.</p>
+      <h4>НСС</h4>
+      <p>Наружные сети связи.</p>
     </div>
+  </div>
+</section>
+
+<!-- ПОЧЕМУ БЫСТРО -->
+<section>
+  <h2>ПОЧЕМУ БЫСТРО</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num">⏱</div>
+      <h3>Раньше: 2 дня в Excel</h3>
+      <p>Ручной ввод позиций, поиск цен, расчёт работ.</p>
+    </div>
+    <div class="step">
+      <div class="num">⚡</div>
+      <h3>Сейчас: 30 секунд</h3>
+      <p>Загрузил PDF — получил Excel. Материалы + работы + НДС.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <h2>ЧАСТЫЕ ВОПРОСЫ</h2>
+
+  <div class="faq-item">
+    <h4>Что нужно загрузить?</h4>
+    <p>PDF рабочей документации — спецификацию или ведомость.</p>
+  </div>
+
+  <div class="faq-item">
+    <h4>Что на выходе?</h4>
+    <p>Excel: материалы, работы, сводка. Готово к отправке заказчику.</p>
+  </div>
+
+  <div class="faq-item">
+    <h4>Цены актуальные?</h4>
+    <p>Своя база + ЭТМ, Петрович, дилеры. Регион — Москва.</p>
   </div>
 </section>
 
@@ -247,7 +303,6 @@
 </footer>
 
 <script>
-// Временно — локальный Worker. Потом заменим на задеплоенный URL.
 const API_URL = 'https://api.mytechbot.ru/parse';
 
 document.getElementById('pdfInput').addEventListener('change', async (e) => {
@@ -257,7 +312,7 @@ document.getElementById('pdfInput').addEventListener('change', async (e) => {
   const status = document.getElementById('status');
   const result = document.getElementById('result');
 
-  status.textContent = 'Загружаю PDF...';
+  status.textContent = 'Загружаю РД...';
   result.style.display = 'none';
 
   const formData = new FormData();
@@ -272,7 +327,7 @@ document.getElementById('pdfInput').addEventListener('change', async (e) => {
     const data = await res.json();
 
     if (data.status === 'success') {
-      status.textContent = `✅ PDF распарсен. Страниц: ${data.pages}`;
+      status.textContent = `✅ РД распарсена. Страниц: ${data.pages}`;
       result.textContent = data.text;
       result.style.display = 'block';
     } else {
