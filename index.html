@@ -136,8 +136,8 @@
     font-family: 'Courier New', monospace;
   }
 
-  
-  .sta/* Stats */ts {
+  /* Stats */
+  .stats {
     display: flex;
     justify-content: center;
     gap: 60px;
@@ -330,7 +330,7 @@
   <h1>КП по РД<br><span>за 30 секунд</span></h1>
   <div class="sub">Aura Production · Режим опытной эксплуатации</div>
   <p class="tagline">Загрузите спецификацию — получите КП с материалами, работами и НДС.</p>
-  <p class="systems"><p class="systems">ЭОМ · СС · СКУД · АПС · СОУЭ · НСС · АК · АСКУЭ · АОВ · ДВТ · СКС · СВН · ЛВС · СОТС · СОТ · РФ · ОЗДС</p></p>
+  <p class="systems">ЭОМ · СС · СКУД · АПС · СОУЭ · НСС · АК · АСКУЭ · АОВ · ДВТ · СКС · СВН · ЛВС · СОТС · СОТ · РФ · ОЗДС</p>
 
   <div class="upload-box">
     <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
@@ -359,15 +359,15 @@
 <!-- STATS -->
 <div class="stats">
   <div class="stat">
-    <div class="num" id="statProducts">618</div>
+    <div class="num" id="statProducts">56610</div>
     <div class="label">Товаров в базе</div>
   </div>
   <div class="stat">
-    <div class="num" id="statPrices">403</div>
+    <div class="num" id="statPrices">56350</div>
     <div class="label">Проверенных цен</div>
   </div>
   <div class="stat">
-    <div class="num" id="statEstimates">5</div>
+    <div class="num" id="statEstimates">14</div>
     <div class="label">Смет обработано</div>
   </div>
 </div>
@@ -470,14 +470,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <footer>
   <p style="margin-bottom: 12px; text-transform: none; letter-spacing: 0; font-size: 13px; color: #64748b; line-height: 1.6;">
     Сайт работает в режиме опытной эксплуатации.<br>
     Мы не собираем и не храним персональные данные.<br>
     Не используем аналитические и рекламные cookie. Только технические — для работы страницы.
   </p>
   <p>Sergijus Incorporated · Aura Production · Moscow · 2026</p>
-</footer>
 </footer>
 
 <script>
